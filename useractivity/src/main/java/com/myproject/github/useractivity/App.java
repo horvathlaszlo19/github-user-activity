@@ -26,6 +26,7 @@ public class App
         try {
         	
         	HttpClient client = HttpClient.newHttpClient();
+        	
 			HttpRequest request = HttpRequest.newBuilder()
 					.uri(new URI("https://api.github.com/users/horvathlaszlo19/events/public"))
 					.GET()
@@ -38,15 +39,6 @@ public class App
 					.send(request, BodyHandlers.ofString());
 			
 			Gson gson = new Gson();
-			//Type userListType = new TypeToken<List<Item>>() {}.getClass();
-			Item[] items = gson.fromJson(response.body(), Item[].class);
-			
-			for(Item item : items) {
-				System.out.println(item.getId());
-			}
-			
-			
-			
 			
 			
 			
