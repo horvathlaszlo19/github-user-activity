@@ -1,22 +1,16 @@
 package com.myproject.github.useractivity;
 
 import java.io.IOException;
-import java.io.StringReader;
+import java.lang.reflect.Type;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.lang.reflect.Type;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 import com.myproject.github.event.GithubEvent;
 
 public class App 
