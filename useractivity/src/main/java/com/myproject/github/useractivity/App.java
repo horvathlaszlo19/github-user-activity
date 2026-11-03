@@ -24,15 +24,15 @@ public class App
     public static void main( String[] args )
     {
     	    	
-    	String name = "horvathlaszlo19";
+    	String name;
     	URI uri = null;
 
     	try {
-    		/*if(args.length == 0) {
+    		if(args.length == 0) {
     			throw new IllegalArgumentException("Username was not give.");
     		}
-    		*/
-    		//name = args[0];
+    		
+    		name = args[0];
     		uri = URI.create("https://api.github.com/users/" + name + "/events/public");
     		
     		
@@ -59,11 +59,21 @@ public class App
 			Type eventListType = new TypeToken<List<GithubEvent>>() {}.getType();
 			List<GithubEvent> events = gson.fromJson(response.body(), eventListType);
 			
+			  
 			for(GithubEvent event : events) {
-				System.out.println(event.getActor().getLogin());
-				System.out.println(event.getType());
-				System.out.println(event.getRepo().getName());
-				System.out.println(event.getCreated_at());
+				if(event.getType().equals("WatchEvent") ) {
+					System.out.println(event.getActor().getLogin() +
+							" started watching " + event.getRepo().getName() + 
+							" at " + event.getCreated_at());
+				} else if(event.getType().equals("PushEvent")) {
+					System.out.println(event.getActor().getLogin() + " pushed to " +
+										event.getRepo().getName() + 
+										" at " + event.getCreated_at());
+				} else if(event.getType().equals("CreateEvent")) {
+					System.out.println(event.getActor().getLogin() + " created " + 
+										event.getRepo().getName() + 
+										" at " + event.getCreated_at());
+				}
 			}
 			
 			
